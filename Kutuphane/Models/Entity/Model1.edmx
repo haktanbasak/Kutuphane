@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="KutuphaneDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="KutuphaneDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cezalar">
           <Key>
             <PropertyRef Name="Id" />
@@ -23,7 +23,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Kitap" Type="int" />
           <Property Name="Uye" Type="int" />
-          <Property Name="Personel" Type="int" />
+          <Property Name="Personel" Type="tinyint" />
           <Property Name="AlisTarih" Type="smalldatetime" />
           <Property Name="İadeTarih" Type="smalldatetime" />
         </EntityType>
@@ -131,6 +131,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Hareket_Personel1">
+          <End Role="Personel" Type="Self.Personel" Multiplicity="0..1" />
+          <End Role="Hareket" Type="Self.Hareket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Hareket">
+              <PropertyRef Name="Personel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Hareket_Uyeler">
           <End Role="Uyeler" Type="Self.Uyeler" Multiplicity="0..1" />
           <End Role="Hareket" Type="Self.Hareket" Multiplicity="*" />
@@ -189,6 +201,10 @@
             <End Role="Kitap" EntitySet="Kitap" />
             <End Role="Hareket" EntitySet="Hareket" />
           </AssociationSet>
+          <AssociationSet Name="FK_Hareket_Personel1" Association="Self.FK_Hareket_Personel1">
+            <End Role="Personel" EntitySet="Personel" />
+            <End Role="Hareket" EntitySet="Hareket" />
+          </AssociationSet>
           <AssociationSet Name="FK_Hareket_Uyeler" Association="Self.FK_Hareket_Uyeler">
             <End Role="Uyeler" EntitySet="Uyeler" />
             <End Role="Hareket" EntitySet="Hareket" />
@@ -202,8 +218,7 @@
             <End Role="Kitap" EntitySet="Kitap" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="KutuphaneDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -227,12 +242,13 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Kitap" Type="Int32" />
           <Property Name="Uye" Type="Int32" />
-          <Property Name="Personel" Type="Int32" />
+          <Property Name="Personel" Type="Byte" />
           <Property Name="AlisTarih" Type="DateTime" Precision="0" />
           <Property Name="İadeTarih" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Cezalar" Relationship="Self.FK_Cezalar_Hareket" FromRole="Hareket" ToRole="Cezalar" />
           <NavigationProperty Name="Kitap1" Relationship="Self.FK_Hareket_Kitap" FromRole="Hareket" ToRole="Kitap" />
           <NavigationProperty Name="Uyeler" Relationship="Self.FK_Hareket_Uyeler" FromRole="Hareket" ToRole="Uyeler" />
+          <NavigationProperty Name="Personel1" Relationship="KutuphaneDBModel.FK_Hareket_Personel1" FromRole="Hareket" ToRole="Personel" />
         </EntityType>
         <EntityType Name="Kasa">
           <Key>
@@ -272,6 +288,7 @@
           </Key>
           <Property Name="Id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Personel1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Hareket" Relationship="KutuphaneDBModel.FK_Hareket_Personel1" FromRole="Personel" ToRole="Hareket" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -415,7 +432,23 @@
             <End Role="Yazar" EntitySet="Yazar" />
             <End Role="Kitap" EntitySet="Kitap" />
           </AssociationSet>
+          <AssociationSet Name="FK_Hareket_Personel1" Association="KutuphaneDBModel.FK_Hareket_Personel1">
+            <End Role="Personel" EntitySet="Personel" />
+            <End Role="Hareket" EntitySet="Hareket" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_Hareket_Personel1">
+          <End Type="KutuphaneDBModel.Personel" Role="Personel" Multiplicity="0..1" />
+          <End Type="KutuphaneDBModel.Hareket" Role="Hareket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Hareket">
+              <PropertyRef Name="Personel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
