@@ -6,36 +6,38 @@
 
 @using (Html.BeginForm("KitapGuncelle", "Kitap", FormMethod.Post))
 {
-    <div class="form-group">
-        <div style="margin-bottom:15px">
-            <label>Kitap ID</label>
-            @Html.TextBoxFor(x => x.Id, new { @class = "form-control" })
-        </div>
-        <div style="margin-bottom:15px">
-            <label>Kitap Adı</label>
-            @Html.TextBoxFor(x => x.Ad, new { @class = "form-control" })
-        </div>
-        <div style="margin-bottom:15px">
-            <label>Kategori</label>
-            @Html.DropDownListFor(x => x.Kategori1.Id, (List<SelectListItem>)ViewBag.dgr1, new { @class = "form-control" })
-        </div> 
-        <div style="margin-bottom:15px">
-            <label>Yazarı</label>
-            @Html.DropDownListFor(x => x.Yazar1.Id, (List<SelectListItem>)ViewBag.dgr2, new { @class = "form-control" })
-        </div>
-        <div style="margin-bottom:15px">
-            <label>Basım Yılı</label>
-            @Html.TextBoxFor(x => x.BasimYil, new { @class = "form-control" })
-        </div>
-        <div style="margin-bottom:15px">
-            <label>Yayınevi</label>
-            @Html.TextBoxFor(x => x.Yayinevi, new { @class = "form-control" })
-        </div>
-        <div style="margin-bottom:15px">
-            <label>Sayfa Sayısı</label>
-            @Html.TextBoxFor(x => x.Sayfa, new { @class = "form-control" })
-        </div>
-        <button class="btn btn-warning">Kitap Bilgilerini Güncelle</button>
+<div class="form-group">
+    <div style="margin-bottom:15px">
+        <label>Kitap ID</label>
+        @Html.TextBoxFor(x => x.Id, new { @class = "form-control" })
     </div>
+    <div style="margin-bottom:15px">
+        <label>Kitap Adı</label>
+        @Html.TextBoxFor(x => x.Ad, new { @class = "form-control" })
+    </div>
+    <div style="margin-bottom:15px">
+        <label>Kategori</label>
+        @Html.DropDownListFor(x => x.Kategori1.Id, (List<SelectListItem>)ViewBag.dgr1, new { @class = "form-control" })
+    </div>
+    <div style="margin-bottom:15px">
+        <label>Yazarı</label>
+        @Html.DropDownListFor(x => x.Yazar1.Id, (List<SelectListItem>)ViewBag.dgr2, new { @class = "form-control" })
+    </div>
+    <div style="margin-bottom:15px">
+        <label>Basım Yılı</label>
+        @Html.TextBoxFor(x => x.BasimYil, new { @class = "form-control" })
+    </div>
+    <div style="margin-bottom:15px">
+        <label>Yayınevi</label>
+        @Html.TextBoxFor(x => x.Yayinevi, new { @class = "form-control" })
+    </div>
+    <div style="margin-bottom:15px">
+        <label>Sayfa Sayısı</label>
+        @Html.TextBoxFor(x => x.Sayfa, new { @class = "form-control" })
+    </div>
+    <button class="btn btn-warning">Kitap Bilgilerini Güncelle</button>
+    @*<input type="hidden" name="Durum" value="True" />*@
+
+</div>
 }
 

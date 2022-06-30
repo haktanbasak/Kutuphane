@@ -1,11 +1,12 @@
 ﻿@using Kutuphane.Models.Entity
 @model List<Hareket>
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/Layout.cshtml";
 }
 
-<h2>Ödünç Kitap Listesi</h2>
+<h2>İadesi Alınan Kitap Listesi</h2>
 
 <table class="table table-bordered">
     <tr>
@@ -14,8 +15,8 @@
         <th>Üye</th>
         <th>Personel</th>
         <th>Alış Tarihi</th>
-        <th>İade Tarihi</th>
-        <th>İade Al</th>
+        <th>Üye İade Tarihi</th>
+        <th>Detaylar</th>
     </tr>
     @foreach (var item in Model)
     {
@@ -25,8 +26,9 @@
             <td>@item.Uyeler.Ad @item.Uyeler.Soyad</td>
             <td>@item.Personel1.Personel1</td>
             <td>@Convert.ToDateTime(@item.AlisTarih).ToString("dd/MM/yyyy")</td>
-            <td>@Convert.ToDateTime(@item.IadeTarih).ToString("dd/MM/yyyy")</td>
-            <td><a href="/Odunc/OduncIade/@item.Id" class="btn btn-default" style="background-color:#64d8ca; color:white">Kitabı İade Al</a></td>
+            <td>@Convert.ToDateTime(@item.UyeGetirTarih).ToString("dd/MM/yyyy")</td>
+            <td><a href="/Odunc/OduncIade/@item.Id" class="btn btn-default" style="background-color:#f87cdf; color:white">Detaylar</a></td>
         </tr>
     }
 </table>
+

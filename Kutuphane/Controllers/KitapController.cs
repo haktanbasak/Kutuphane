@@ -90,6 +90,7 @@ namespace Kutuphane.Controllers
             ktp.BasimYil = kitap.BasimYil;
             ktp.Sayfa = kitap.Sayfa;
             ktp.Yayinevi = kitap.Yayinevi;
+            ktp.Durum = kitap.Durum;
             var ktg = db.Kategori.Where(x => x.Id == kitap.Kategori1.Id).FirstOrDefault();
             var yzr = db.Yazar.Where(x => x.Id == kitap.Yazar1.Id).FirstOrDefault();
             ktp.Kategori = ktg.Id;

@@ -25,7 +25,9 @@ namespace Kutuphane.Models.Entity
         public Nullable<int> Uye { get; set; }
         public Nullable<byte> Personel { get; set; }
         public Nullable<System.DateTime> AlisTarih { get; set; }
-        public Nullable<System.DateTime> İadeTarih { get; set; }
+        public Nullable<System.DateTime> UyeGetirTarih { get; set; }
+        public Nullable<bool> IslemDurum { get; set; }
+        public Nullable<System.DateTime> IadeTarih { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cezalar> Cezalar { get; set; }

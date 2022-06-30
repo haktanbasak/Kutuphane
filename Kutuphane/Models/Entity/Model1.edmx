@@ -25,7 +25,9 @@
           <Property Name="Uye" Type="int" />
           <Property Name="Personel" Type="tinyint" />
           <Property Name="AlisTarih" Type="smalldatetime" />
-          <Property Name="İadeTarih" Type="smalldatetime" />
+          <Property Name="IadeTarih" Type="smalldatetime" />
+          <Property Name="UyeGetirTarih" Type="smalldatetime" />
+          <Property Name="IslemDurum" Type="bit" />
         </EntityType>
         <EntityType Name="Kasa">
           <Key>
@@ -244,11 +246,13 @@
           <Property Name="Uye" Type="Int32" />
           <Property Name="Personel" Type="Byte" />
           <Property Name="AlisTarih" Type="DateTime" Precision="0" />
-          <Property Name="İadeTarih" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Cezalar" Relationship="Self.FK_Cezalar_Hareket" FromRole="Hareket" ToRole="Cezalar" />
           <NavigationProperty Name="Kitap1" Relationship="Self.FK_Hareket_Kitap" FromRole="Hareket" ToRole="Kitap" />
           <NavigationProperty Name="Uyeler" Relationship="Self.FK_Hareket_Uyeler" FromRole="Hareket" ToRole="Uyeler" />
           <NavigationProperty Name="Personel1" Relationship="KutuphaneDBModel.FK_Hareket_Personel1" FromRole="Hareket" ToRole="Personel" />
+          <Property Name="UyeGetirTarih" Type="DateTime" Precision="0" />
+          <Property Name="IslemDurum" Type="Boolean" />
+          <Property Name="IadeTarih" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="Kasa">
           <Key>
@@ -470,12 +474,14 @@
           <EntitySetMapping Name="Hareket">
             <EntityTypeMapping TypeName="KutuphaneDBModel.Hareket">
               <MappingFragment StoreEntitySet="Hareket">
+                <ScalarProperty Name="IadeTarih" ColumnName="IadeTarih" />
+                <ScalarProperty Name="IslemDurum" ColumnName="IslemDurum" />
+                <ScalarProperty Name="UyeGetirTarih" ColumnName="UyeGetirTarih" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Kitap" ColumnName="Kitap" />
                 <ScalarProperty Name="Uye" ColumnName="Uye" />
                 <ScalarProperty Name="Personel" ColumnName="Personel" />
                 <ScalarProperty Name="AlisTarih" ColumnName="AlisTarih" />
-                <ScalarProperty Name="İadeTarih" ColumnName="İadeTarih" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

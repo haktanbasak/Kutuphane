@@ -12,7 +12,7 @@ namespace Kutuphane.Controllers
         // GET: Odunc
         public ActionResult Index()
         {
-            var model = db.Hareket.ToList();
+            var model = db.Hareket.Where(x=>x.IslemDurum == false).ToList();
             return View(model);
         }
 
@@ -28,6 +28,21 @@ namespace Kutuphane.Controllers
             db.Hareket.Add(hareket);
             db.SaveChanges();
             return View();
+        }
+
+        public ActionResult OduncIade(int id)
+        {
+            var odn = db.Hareket.Find(id);
+            return View("OduncIade", odn);
+        }
+
+        public ActionResult OduncGuncelle(Hareket hareket)
+        {
+            var hrk = db.Hareket.Find(hareket.Id);
+            hrk.UyeGetirTarih = hareket.UyeGetirTarih;
+            hrk.IslemDurum = true;
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
