@@ -28,6 +28,7 @@ namespace Kutuphane.Models.Entity
         public string Yayinevi { get; set; }
         public string Sayfa { get; set; }
         public Nullable<bool> Durum { get; set; }
+        public string KitapResim { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Hareket> Hareket { get; set; }

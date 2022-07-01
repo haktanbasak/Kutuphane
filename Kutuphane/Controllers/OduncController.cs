@@ -30,9 +30,13 @@ namespace Kutuphane.Controllers
             return View();
         }
 
-        public ActionResult OduncIade(int id)
+        public ActionResult OduncIade(Hareket hareket)
         {
-            var odn = db.Hareket.Find(id);
+            var odn = db.Hareket.Find(hareket.Id);
+            DateTime d1 = DateTime.Parse(odn.IadeTarih.ToString());
+            DateTime d2 = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+            TimeSpan d3 = d2 - d1;
+            ViewBag.dgr1 = d3;
             return View("OduncIade", odn);
         }
 
