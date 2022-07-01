@@ -7,11 +7,19 @@ using System.Web.Mvc;
 
 namespace Kutuphane.Controllers
 {
-    public class IstatistikController : Controller
+    public class IstatistikController : BaseController
     {
         // GET: Istatistik
         public ActionResult Index()
         {
+            var deger1 = db.Uyeler.Count();
+            var deger2 = db.Kitap.Count();
+            var deger3 = db.Kitap.Where(x=>x.Durum==false).Count();
+            var deger4 = db.Cezalar.Sum(x=>x.Para);
+            ViewBag.dgr1 = deger1;
+            ViewBag.dgr2 = deger2;
+            ViewBag.dgr3 = deger3;
+            ViewBag.dgr4 = deger4;
             return View();
         }
 
