@@ -11,8 +11,7 @@ namespace Kutuphane.Models.Entity
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Yazar
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,11 +21,7 @@ namespace Kutuphane.Models.Entity
         }
     
         public int Id { get; set; }
-
-        [Required(ErrorMessage ="Yazar Adýný Boþ Geçemezsiniz!")]
         public string Ad { get; set; }
-
-        [StringLength(20,ErrorMessage ="Soyad 20 Karakterden Uzun Olamaz!")]
         public string Soyad { get; set; }
         public string Detay { get; set; }
     
