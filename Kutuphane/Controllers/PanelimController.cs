@@ -7,10 +7,10 @@ using System.Web.Mvc;
 
 namespace Kutuphane.Controllers
 {
+    [Authorize]
     public class PanelimController : BaseController
     {
         // GET: Panelim
-        [Authorize]
         public ActionResult Index()
         {
             var uyeMail = (string)Session["Mail"];
