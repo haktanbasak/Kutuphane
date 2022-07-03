@@ -31,5 +31,13 @@ namespace Kutuphane.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public ActionResult Kitaplarim()
+        {
+            var kullanici = (string)Session["Mail"];
+            var id = db.Uyeler.Where(z => z.Mail == kullanici.ToString()).Select(x=>x.Id).FirstOrDefault();
+            var degerler = db.Hareket.Where(x => x.Uye == id).ToList();
+            return View(degerler);
+        }
     }
 }
