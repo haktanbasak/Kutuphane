@@ -12,7 +12,7 @@ namespace Kutuphane.Controllers
         // GET: Kategori
         public ActionResult Index()
         {
-            var degerler = db.Kategori.ToList();
+            var degerler = db.Kategori.Where(x=>x.Durum==true).ToList();
             return View(degerler);
         }
 
@@ -32,7 +32,8 @@ namespace Kutuphane.Controllers
         public ActionResult KategoriSil(int id)
         {
             var kategori = db.Kategori.Find(id);
-            db.Kategori.Remove(kategori);
+            kategori.Durum = false;
+            //db.Kategori.Remove(kategori);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -63,5 +63,13 @@ namespace Kutuphane.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public ActionResult UyeKitapGecmis(int id)
+        { 
+            var ktpGecmis = db.Hareket.Where(x => x.Uye == id).ToList();
+            var uye = db.Uyeler.Where(x => x.Id == id).Select(y => y.Ad + " " + y.Soyad).FirstOrDefault();
+            ViewBag.uyeAd = uye;
+            return View(ktpGecmis);
+        }
     }
 }

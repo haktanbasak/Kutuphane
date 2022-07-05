@@ -58,5 +58,13 @@ namespace Kutuphane.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public ActionResult YazarKitaplar(int id) 
+        {
+            var yazar = db.Kitap.Where(x => x.Yazar == id).ToList();
+            var yzrad = db.Yazar.Where(x => x.Id == id).Select(y => y.Ad + " " + y.Soyad).FirstOrDefault();
+            ViewBag.yazarAd = yzrad;
+            return View(yazar);
+        }
     }
 }

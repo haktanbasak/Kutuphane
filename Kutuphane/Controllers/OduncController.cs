@@ -19,15 +19,44 @@ namespace Kutuphane.Controllers
         [HttpGet]
         public ActionResult OduncVer()
         {
+            List<SelectListItem> deger1 = (from x in db.Uyeler.ToList()
+                                           select new SelectListItem
+                                           {
+                                               Text = x.Ad + " " + x.Soyad,
+                                               Value = x.Id.ToString()
+                                           }).ToList();
+            ViewBag.dgr1 = deger1;
+
+            List<SelectListItem> deger2 = (from y in db.Kitap.Where(x=>x.Durum==true).ToList()
+                                           select new SelectListItem
+                                           {
+                                               Text = y.Ad,
+                                               Value = y.Id.ToString()
+                                           }).ToList();
+            ViewBag.dgr2 = deger2;
+
+            List<SelectListItem> deger3 = (from x in db.Personel.ToList()
+                                           select new SelectListItem
+                                           {
+                                               Text = x.Personel1,
+                                               Value = x.Id.ToString()
+                                           }).ToList();
+            ViewBag.dgr3 = deger3;
             return View();
         }
 
         [HttpPost]
         public ActionResult OduncVer(Hareket hareket)
         {
+            var d1 = db.Uyeler.Where(x => x.Id == hareket.Uyeler.Id).FirstOrDefault();
+            var d2 = db.Kitap.Where(x => x.Id == hareket.Kitap1.Id).FirstOrDefault();
+            var d3 = db.Personel.Where(x => x.Id == hareket.Personel1.Id).FirstOrDefault();
+            hareket.Uyeler = d1;
+            hareket.Kitap1 = d2;
+            hareket.Personel1 = d3;
             db.Hareket.Add(hareket);
             db.SaveChanges();
-            return View();
+            return RedirectToAction("Index");
         }
 
         public ActionResult OduncIade(Hareket hareket)
