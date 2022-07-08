@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace Kutuphane.Controllers
 {
@@ -38,6 +39,18 @@ namespace Kutuphane.Controllers
             var id = db.Uyeler.Where(z => z.Mail == kullanici.ToString()).Select(x=>x.Id).FirstOrDefault();
             var degerler = db.Hareket.Where(x => x.Uye == id).ToList();
             return View(degerler);
+        }
+
+        public ActionResult Duyurular()
+        {
+            var duyuruListesi = db.Duyurular.ToList();
+            return View(duyuruListesi);
+        }
+
+        public ActionResult LogOut()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("GirisYap","Login");
         }
     }
 }

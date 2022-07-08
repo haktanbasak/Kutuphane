@@ -39,6 +39,7 @@ namespace Kutuphane.Models.Entity
         public virtual DbSet<Hakkimizda> Hakkimizda { get; set; }
         public virtual DbSet<Iletisim> Iletisim { get; set; }
         public virtual DbSet<Mesajlar> Mesajlar { get; set; }
+        public virtual DbSet<Duyurular> Duyurular { get; set; }
     
         public virtual ObjectResult<string> EnFazlaKitapYazar()
         {
