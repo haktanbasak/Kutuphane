@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace Kutuphane.Controllers
 {
+    [AllowAnonymous]
     public class VitrinController : BaseController
     {
         // GET: Vitrin

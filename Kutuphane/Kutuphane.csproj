@@ -136,6 +136,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DuyuruController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IslemController.cs" />
     <Compile Include="Controllers\IstatistikController.cs" />
@@ -589,6 +590,7 @@
     <Content Include="Views\Duyuru\YeniDuyuru.cshtml" />
     <Content Include="Views\Duyuru\DuyuruDetay.cshtml" />
     <Content Include="Views\Panelim\Duyurular.cshtml" />
+    <Content Include="Views\Error\Page404.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
